@@ -14,48 +14,45 @@ class Menu {
         name: "Menu",
         properties: {
             name: "string",
-            dishes: "Dish[]"
+            dishes: "mixed[]",
         }
     };
-
     printDishes() {
-        console.log(this.dishes.forEach((dish, index) => `Dish ${index + 1}: {dish}`))
+        this.dishes.forEach((dish) => dish.printDetails())
     }
 }
 
-class Dish {
+class Soup {
     static schema = {
-        name: "Dish",
+        name: "Soup",
         properties: {
+            name: "string",
+            volumeInMililiters: "int",
             price: "double",
             ingredients: "Ingredient[]"
         }
     };
-
     printDetails() {
-        console.log(`Dish price: ${this.price}. Its ingredients: ${this.ingredients.map((ingredient) => ingredient.name)}`)
+        console.log(`Soup;${this.name};${this.price};${this.volumeInMililiters};` +
+        `${this.ingredients.map((ingredient) => ingredient.name)}`)
     }
 }
 
-// class Soup {
-//     static schema = {
-//         name: "Soup",
-//         properties: {
-//             price: "double",
-//             ingredients: "Ingredient[]"
-//         }
-//     };
-// }
-//
-// class Main {
-//     static schema = {
-//         name: "Main",
-//         properties: {
-//             price: "double",
-//             ingredients: "Ingredient[]"
-//         }
-//     };
-// }
+class Main {
+    static schema = {
+        name: "Main",
+        properties: {
+            name: "string",
+            weightInGrams: "int",
+            price: "double",
+            ingredients: "Ingredient[]"
+        }
+    };
+    printDetails() {
+        console.log(`Main;${this.name};${this.price};${this.weightInGrams};` +
+            `${this.ingredients.map((ingredient) => ingredient.name)}`)
+    }
+}
 
 class Ingredient {
     static schema = {
@@ -67,5 +64,5 @@ class Ingredient {
 }
 
 module.exports = {
-    Restaurant, Menu, Dish, Ingredient
+    Restaurant, Menu, Soup, Main, Ingredient
 };
